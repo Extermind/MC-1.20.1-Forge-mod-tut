@@ -2,6 +2,7 @@ package net.extermind.examplemod;
 
 import com.mojang.logging.LogUtils;
 import net.extermind.examplemod.item.ModItems;
+import net.extermind.examplemod.other.ModCreativeTabs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -31,14 +32,18 @@ public class ExampleMod
     public ExampleMod(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
-
+        // Items
         ModItems.register(modEventBus);
+        // Blocks, Entities, etc..
 
+        //Creative tabs
+        ModCreativeTabs.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
